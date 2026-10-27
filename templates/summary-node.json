@@ -1,0 +1,1 @@
+{"content_hash":"<sha256 of the summarised content>","covers":{"from_line":0,"from_ts":"<ISO-8601>","to_line":0,"to_ts":"<ISO-8601>"},"created":"<ISO-8601 timestamp>","summary_ref":"<path to the summary file>","type":"compaction-summary"}

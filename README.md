@@ -197,12 +197,17 @@ and multi-agent production practice.*
 .
 ├── README.md          — this file
 ├── LICENSE            — MIT
-└── docs/
-    └── ROADMAP.md     — module roadmap, phases and acceptance criteria
+├── docs/
+│   ├── SPEC.md        — Module 1 specification v0.1 (draft)
+│   └── ROADMAP.md     — module roadmap, phases and acceptance criteria
+├── templates/         — file templates for every layer (L0–L4)
+├── tools/             — the `harness-layer check` CLI
+└── examples/          — a minimal conformant workspace + a broken fixture
 ```
 
-The v0.1 specification (`SPEC.md`), file templates and the `check` CLI land
-here as Phase 1–2 of the roadmap complete.
+The repository is built and tested as a standalone product first
+(Phases 2–3 of the roadmap); adoption into a specific harness comes
+after the tests pass (Phase 4).
 
 ## Why open source?
 

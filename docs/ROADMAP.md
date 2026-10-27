@@ -13,16 +13,25 @@ recalibrated from the actuals of the first completed phase.*
   (L0 identity, L1 project instructions, L2 curated long-term memory, L3
   working state, L4 append-only session log) written as testable rules, plus
   file templates per layer. Human review gate before any build. *(±6–8 h)*
-- **Phase 2 — Reference implementation (nanobot).** Write-before-compact
-  hook, hierarchical L1 injection, L4 session log, `harness-layer check`
-  CLI. Independent QA gate: nothing merges without review. *(±12–18 h)*
-- **Phase 3 — Evaluation & calibration.** Run the acceptance battery
-  (below) before vs. after; publish results as measured, including
-  failures. A failed battery returns the work to Phase 1 — it is not
-  declared done. *(±6–10 h)*
-- **Phase 4 — Second adapter + migration drill.** One more adapter (Goose
-  or Hermes), then the portability drill: a real job moved between two
-  harnesses using only Layer files. *(±8–12 h)*
+- **Phase 2 — Build the repository as a standalone product.** The
+  public specification (`docs/SPEC.md`), per-layer templates
+  (`templates/`), the `harness-layer check` CLI (`tools/`), a conformant
+  example workspace (`examples/`) and its test suite. **No adoption into
+  any harness happens in this phase.** Independent QA gate: nothing
+  merges without review. *(±12–18 h)*
+- **Phase 3 — Test the repository.** Internal tests first (the check CLI
+  must pass the conformant example and fail a deliberately broken
+  fixture), then the check is run read-only against real workspaces as
+  test subjects for a conformance baseline, and the evaluation battery
+  (below) is run as far as it can go without adoption. Results are
+  published as measured, including failures. A failed battery returns
+  the work to Phase 1/2 — it is not declared done. *(±6–10 h)*
+- **Phase 4 — First adoption, second adapter, migration drill.** Only
+  after Phase 3 passes: the Layer is adopted into a first harness
+  (write-before-compact hook, hierarchical L1 injection, L4 operations),
+  then a second adapter (Goose or Hermes), then the portability drill:
+  a real job moved between two harnesses using only Layer files.
+  *(±8–12 h)*
 
 **Total v1 (Phases 0–4): ±36–54 active agent hours.**
 
