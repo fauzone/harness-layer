@@ -34,9 +34,13 @@ harness can pick up unchanged.
 
 ## Status
 
-**Developer preview — specification v0.1 in development.** Module 1
-(Memory on Disk) is being specified first; later modules are specified as
-roadmap in [docs/ROADMAP.md](docs/ROADMAP.md). Features below are labelled:
+**Developer preview.** Module 1 (Memory on Disk) is specified in
+[docs/SPEC.md](docs/SPEC.md) (v0.2) and has passed its first sandbox
+adoption test: an adopted workspace scored 12/12 on the conformance
+check, and a fresh session answered 20/20 planted questions from disk
+alone after its context was discarded. Modules 2–4 are published as
+SPEC-lite documents; the full roadmap is in
+[docs/ROADMAP.md](docs/ROADMAP.md). Features below are labelled:
 
 - `SPEC` — defined in the v0.1 specification draft
 - `GUIDE` — adapter guide in progress
@@ -198,8 +202,12 @@ and multi-agent production practice.*
 ├── README.md          — this file
 ├── LICENSE            — MIT
 ├── docs/
-│   ├── SPEC.md        — Module 1 specification v0.1 (draft)
-│   └── ROADMAP.md     — module roadmap, phases and acceptance criteria
+│   ├── SPEC.md        — Module 1 specification (draft, v0.2)
+│   ├── ROADMAP.md     — module roadmap, phases and acceptance criteria
+│   ├── MODULE-2-self-check-loop.md        — Module 2 SPEC-lite
+│   ├── MODULE-3-cost-context-discipline.md — Module 3 SPEC-lite
+│   ├── MODULE-4-orchestration-patterns.md  — Module 4 SPEC-lite
+│   └── ADAPTER-goose.md                    — adapter guide (draft)
 ├── templates/         — file templates for every layer (L0–L4)
 ├── tools/             — the `harness-layer check` CLI
 └── examples/          — a minimal conformant workspace + a broken fixture

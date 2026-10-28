@@ -54,12 +54,19 @@ recalibrated from the actuals of the first completed phase.*
 
 - **Module 2 — Self-Check Loop:** test-iteration loop with explicit
   completion criteria; mutation check (bug re-insertion) to prove test
-  suites actually guard fixes.
+  suites actually guard fixes. *SPEC-lite published:
+  [MODULE-2-self-check-loop.md](MODULE-2-self-check-loop.md).*
 - **Module 3 — Cost & Context Discipline:** per-task cost metering,
   context-floor budgets, continuation on truncated output, compaction that
   trims tool output before summarising, one-shot session workflow.
+  *SPEC-lite published:
+  [MODULE-3-cost-context-discipline.md](MODULE-3-cost-context-discipline.md).*
 - **Module 4 — Orchestration Patterns:** recipes, Plan/Act separation,
   loop event hooks, sub-agent isolation, QA gate, human decision gates.
+  *SPEC-lite published:
+  [MODULE-4-orchestration-patterns.md](MODULE-4-orchestration-patterns.md).*
+
+Adapter guides: [ADAPTER-goose.md](ADAPTER-goose.md) (draft).
 
 ## Risks tracked openly
 

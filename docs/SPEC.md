@@ -1,11 +1,16 @@
-# Harness Layer Specification v0.1 (DRAFT)
+# Harness Layer Specification v0.2 (DRAFT)
 
 ## Module 1: Memory on Disk
 
 *Status: DRAFT. This specification is published as part of the repository
-so it can be tested and challenged. Adoption into any specific harness is
-a later phase (see ROADMAP.md). The key words MUST, MUST NOT, SHOULD and
-MAY are to be interpreted as in RFC 2119.*
+so it can be tested and challenged. The key words MUST, MUST NOT, SHOULD
+and MAY are to be interpreted as in RFC 2119.*
+
+*Changelog v0.2 (from the first sandbox adoption test, 2026-10-28): added
+the read-scope fence (HL-B-4) and per-task token budgets (HL-B-5) after a
+test in which the memory protocol scored 20/20 on cold-resume recall but
+the agent sessions consumed ~10.4M tokens through out-of-scope
+exploration; clarified enforcement tiers in HL-P-2.*
 
 ---
 
@@ -116,11 +121,15 @@ requirements.
   MUST flush to disk: new decisions (L3/L2), new facts (L2), task status
   (L3), open edge cases (L3). Anything that exists only in conversation
   is treated as **not saved**.
-- **HL-P-2** Enforcement is tiered: (a) v0.1 — the protocol as an
-  instruction in a canonical skill auto-loaded by all agents, plus the
-  write triggers of HL-L3-3; (b) later — a mechanical hook or wrapper in
-  harnesses that support one. Each adapter MUST state its tier
-  explicitly.
+- **HL-P-2** Enforcement is tiered: (a) the protocol as an instruction in
+  a canonical skill auto-loaded by all agents, plus the write triggers
+  of HL-L3-3; (b) a mechanical hook or wrapper in harnesses that support
+  one; (c) detective control — periodic conformance checks across
+  workspaces plus per-task meter review, which catches violations after
+  the fact and feeds them back as corrections. Each adapter MUST state
+  its tier explicitly and MUST NOT claim a higher tier than it runs.
+  (A true pre-compact hook requires harness support; where the harness
+  exposes none, tier (a)+(c) is the honest maximum.)
 
 ### 3.2 Read-on-resume
 
@@ -156,6 +165,16 @@ row, together with its protocol fix.
 - **HL-B-3** L2/L3 MUST be loaded selectively (index/headings first,
   then the sections needed). Loading a large MEMORY.md in full into
   every session violates this clause.
+- **HL-B-4 — Read-scope fence.** A task brief defines the read scope:
+  the files it names plus what the current step demonstrably needs.
+  Reading outside the scope MUST be justifiable in the task's report.
+  Exploratory reading of unrelated trees is a protocol violation, not
+  initiative. (Added in v0.2 after sandbox measurement: out-of-scope
+  exploration, not file size, was the dominant token cost.)
+- **HL-B-5 — Per-task token budget.** Organisations SHOULD set a token
+  budget per task class, measured by the harness's per-invocation meter
+  (see Module 3). Exceeding the budget is recorded as a finding in the
+  task report — with the cause — not silently absorbed.
 
 ## 5. Self-learning guard
 
