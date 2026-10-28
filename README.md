@@ -42,7 +42,10 @@ alone after its context was discarded. Modules 2–4 are published as
 SPEC-lite documents; the full roadmap is in
 [docs/ROADMAP.md](docs/ROADMAP.md). Features below are labelled:
 
-- `SPEC` — defined in the v0.1 specification draft
+- `SPEC` — defined in a full specification (Module 1: docs/SPEC.md)
+- `SPEC-LITE` — a draft specification is published (numbered requirements
+  in the module document); the full module build-out (templates, tooling,
+  conformance tests) is still on the roadmap
 - `GUIDE` — adapter guide in progress
 - `ROADMAP` — designed, scheduled in a later module
 
@@ -107,9 +110,10 @@ failure cases observed in other harnesses.*
 - **`harness-layer check` CLI.** Verifies an adopter workspace: required
   files exist, always-loaded layers are within budget, structure conforms.
 
-### Module 2 — Self-Check Loop `ROADMAP`
+### Module 2 — Self-Check Loop `SPEC-LITE`
 
-*From Claude Code, whose most-praised user-visible trait is loop persistence.*
+*Specification (lite): [docs/MODULE-2-self-check-loop.md](docs/MODULE-2-self-check-loop.md).
+From Claude Code, whose most-praised user-visible trait is loop persistence.*
 
 - Iterate **investigate → edit → run tests → fix from failures** until the
   completion criteria pass, instead of declaring a plausible partial result done.
@@ -117,9 +121,10 @@ failure cases observed in other harnesses.*
   a fix, re-introduce the original bug and confirm the tests catch it.
 - Explicit completion criteria per task, checked mechanically where possible.
 
-### Module 3 — Cost & Context Discipline `ROADMAP`
+### Module 3 — Cost & Context Discipline `SPEC-LITE`
 
-*From Cline (per-task cost visibility), Goose and Pi (context leanness),
+*Specification (lite): [docs/MODULE-3-cost-context-discipline.md](docs/MODULE-3-cost-context-discipline.md).
+From Cline (per-task cost visibility), Goose and Pi (context leanness),
 Claude Code (recovery behaviour), measured across harnesses by independent studies.*
 
 - **Per-task cost metering:** tokens and cost displayed per task and per
@@ -135,9 +140,10 @@ Claude Code (recovery behaviour), measured across harnesses by independent studi
   L3 state files, scripted mechanical steps instead of model turns, and
   targeted (section-level) file reading instead of whole-file loading.
 
-### Module 4 — Orchestration Patterns `ROADMAP`
+### Module 4 — Orchestration Patterns `SPEC-LITE`
 
-*From Goose (recipes, MCP-first extensions), Cline (Plan/Act), OpenCode
+*Specification (lite): [docs/MODULE-4-orchestration-patterns.md](docs/MODULE-4-orchestration-patterns.md).
+From Goose (recipes, MCP-first extensions), Cline (Plan/Act), OpenCode
 (plan mode), DeepSeek Harness (the loop as an interceptable protocol),
 and multi-agent production practice.*
 
