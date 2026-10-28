@@ -168,8 +168,10 @@ and multi-agent production practice.*
   different harnesses. A generic, agent-executable adaptation procedure
   ([docs/ADAPTER-GUIDE.md](docs/ADAPTER-GUIDE.md)) lets an agent on any
   harness produce the mapping itself; nanobot is the tested reference
-  implementation, Goose has a draft mapping, and further adapters are
-  expected to arrive as contributed results of that procedure.
+  implementation, and Goose's adapter was produced by a Goose agent
+  running that very procedure from this README alone (adoption tested;
+  self-test deferred and labelled as such in the document). Further
+  adapters are expected to arrive the same way.
 - **Migration drill** — a defined exercise that moves a real job between two
   harnesses using *only* the Layer's files (L0–L4). Portability is claimed
   only after a drill passes.
@@ -208,7 +210,8 @@ you found, instantiates the files, and ends with a conformance run and
 a self-test whose numbers you report as measured. A completed run of
 that procedure on a real harness is
 [docs/ADAPTER-nanobot.md](docs/ADAPTER-nanobot.md) (tested, with
-measured results); a draft mapping for Goose is in
+measured results); a second completed run — by an agent on a
+*different* harness, Goose — is
 [docs/ADAPTER-goose.md](docs/ADAPTER-goose.md).
 
 For a human reader, the short version:
@@ -237,7 +240,7 @@ For a human reader, the short version:
 │   ├── MODULE-4-orchestration-patterns.md  — Module 4 SPEC-lite
 │   ├── ADAPTER-GUIDE.md                    — how an agent adapts the Layer to a new harness
 │   ├── ADAPTER-nanobot.md                  — worked adapter example (tested, measured)
-│   └── ADAPTER-goose.md                    — adapter guide (draft)
+│   └── ADAPTER-goose.md                    — adapter written by a Goose agent (adoption tested)
 ├── templates/         — file templates for every layer (L0–L4)
 ├── tools/             — the `harness-layer check` CLI
 └── examples/          — a minimal conformant workspace + a broken fixture

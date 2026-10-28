@@ -71,7 +71,9 @@ Adapter guides: a generic, agent-executable adaptation procedure
 inventories its own harness, builds the layer mapping, instantiates
 the files and self-tests, following the procedure end to end.
 Worked examples: [ADAPTER-nanobot.md](ADAPTER-nanobot.md) (tested,
-measured) and [ADAPTER-goose.md](ADAPTER-goose.md) (draft). Sequencing
+measured) and [ADAPTER-goose.md](ADAPTER-goose.md) (adoption tested
+2026-10-28 by a Goose agent following the guide from the README alone;
+Step 7 self-test deferred). Sequencing
 note (maintainers, 2026-10-28): completing the modules and guides so
 others can use them comes before deepening the implementation inside
 the maintainers' own systems; per-module adoption into those systems

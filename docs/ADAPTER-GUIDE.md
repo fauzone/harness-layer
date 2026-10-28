@@ -46,6 +46,13 @@ You are done when all six exist:
   **(c) detective** — a periodic external check detects violations
   after the fact. Most adaptations are mostly (a) with some (c).
   That is acceptable. Mislabeling (a) as (b) is not.
+- **Write each artifact to disk as soon as it is drafted.** Never hold
+  all deliverables for one final output: long generations get cut off
+  (upstream timeouts, compaction, crashes), and only what is on disk
+  survives. This is the Layer's own survival rule applied to the
+  adaptation work itself — *(field evidence: the first Goose adoption
+  run lost its ending to an upstream idle timeout mid-generation; the
+  resumed run, writing incrementally, completed.)*
 - **Keep the always-loaded set small.** L0 + L1 together have a size
   ceiling (SPEC: L0 ≤ 12 KB, L1 ≤ 8 KB per file set). If your harness
   auto-loads additional files, count them against the same budget and
