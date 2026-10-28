@@ -48,7 +48,8 @@ recalibrated from the actuals of the first completed phase.*
    ceiling set in the specification; `harness-layer check` is green.
 5. **No cost regression:** tokens per task on the battery rise ≤ 10%
    versus baseline — better memory must not be bought with silently
-   fatter context.
+   fatter context. *(Pilot-measured 2026-10-28: NOT met yet — 1.8–5×
+   overhead; see `EVALUATION-AB.md`. Remains the Module 3 target.)*
 
 ## Later modules
 

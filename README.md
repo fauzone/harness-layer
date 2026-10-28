@@ -175,6 +175,10 @@ and multi-agent production practice.*
 - **Migration drill** — a defined exercise that moves a real job between two
   harnesses using *only* the Layer's files (L0–L4). Portability is claimed
   only after a drill passes.
+- **A/B pilot measured (2026-10-28, Goose, n=2/cell):** cold-resume recall
+  **20/20 with the Layer vs 0/20 without**; token overhead ≈1.8× (short
+  tasks) to ≈5× (fact-planting) — the v1 cost criterion is **not** met yet.
+  Full protocol, data, and deviations: `docs/EVALUATION-AB.md`.
 - **Evaluation battery** (targets for v1, measured and published):
   - *Compaction survival:* ≥ 20 edge cases planted in conversation, context
     compacted by force — target ≥ 95% answerable from disk alone.
@@ -184,7 +188,9 @@ and multi-agent production practice.*
     moved from the source harness.
   - *Size discipline:* always-loaded layers within the specified token ceiling.
   - *Cost non-regression:* tokens per task on the battery rise ≤ 10% versus
-    the pre-adoption baseline.
+    the pre-adoption baseline. **Pilot measurement (2026-10-28): NOT met** —
+    overhead ≈1.8–5× depending on task; the continuity benefit (20/20 vs
+    0/20 cold-resume recall) is real. Full data: `docs/EVALUATION-AB.md`.
 
 ## Design principles
 
@@ -240,7 +246,8 @@ For a human reader, the short version:
 │   ├── MODULE-4-orchestration-patterns.md  — Module 4 SPEC-lite
 │   ├── ADAPTER-GUIDE.md                    — how an agent adapts the Layer to a new harness
 │   ├── ADAPTER-nanobot.md                  — worked adapter example (tested, measured)
-│   └── ADAPTER-goose.md                    — adapter written by a Goose agent (adoption tested)
+│   ├── ADAPTER-goose.md                    — adapter written by a Goose agent (adoption tested)
+│   └── EVALUATION-AB.md                    — A/B pilot: with vs. without the Layer (measured)
 ├── templates/         — file templates for every layer (L0–L4)
 ├── tools/             — the `harness-layer check` CLI
 └── examples/          — a minimal conformant workspace + a broken fixture

@@ -209,6 +209,12 @@ cold-resume test (≤ 1 clarification question the files should have
 answered); a migration drill between two harnesses using only Layer
 files; and cost non-regression (≤ +10% tokens per task vs. baseline).
 
+*Measured status (2026-10-28 pilot, Goose, n=2/cell — see
+`EVALUATION-AB.md`): continuity and cold-resume targets met
+(20/20 vs 0/20 control); cost non-regression **NOT met** — measured
+overhead ≈1.8× (short tasks) to ≈5× (fact-planting). The ≤ +10%
+figure remains the Module 3 target, not a current property.*
+
 ---
 
 *End of SPEC v0.1 DRAFT.*
