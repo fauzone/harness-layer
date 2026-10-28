@@ -66,7 +66,16 @@ recalibrated from the actuals of the first completed phase.*
   *SPEC-lite published:
   [MODULE-4-orchestration-patterns.md](MODULE-4-orchestration-patterns.md).*
 
-Adapter guides: [ADAPTER-goose.md](ADAPTER-goose.md) (draft).
+Adapter guides: a generic, agent-executable adaptation procedure
+([ADAPTER-GUIDE.md](ADAPTER-GUIDE.md)) — an agent on any harness
+inventories its own harness, builds the layer mapping, instantiates
+the files and self-tests, following the procedure end to end.
+Worked examples: [ADAPTER-nanobot.md](ADAPTER-nanobot.md) (tested,
+measured) and [ADAPTER-goose.md](ADAPTER-goose.md) (draft). Sequencing
+note (maintainers, 2026-10-28): completing the modules and guides so
+others can use them comes before deepening the implementation inside
+the maintainers' own systems; per-module adoption into those systems
+follows once each module is complete.
 
 ## Risks tracked openly
 
