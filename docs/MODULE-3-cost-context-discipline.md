@@ -48,6 +48,33 @@ while it matters.
   observed behaviour (HL-L4-4) instead of claiming this by default.
 - **CC-8 — Budgets with findings.** Per-task-class budgets (HL-B-5)
   SHOULD exist; an overrun produces a recorded finding with cause.
+- **CC-9 — Context capsule per project.** Each project SHOULD
+  maintain one compact capsule file (target ±2–3k tokens: stack,
+  locked decisions, known traps, last known state) that is updated at
+  the end of a work session and read at the start of the next.
+  Warm-up is one read, not an excavation of the project history;
+  full sources are opened only when the capsule points at them.
+- **CC-10 — Phase overhead discipline.** Process overhead per phase
+  (plan amendments, briefs, audits, verification, reporting) is a
+  fixed cost independent of feature size — measured in the
+  maintainers' fleet at roughly 1–2.5M tokens per phase, a 30–60%
+  surcharge on small features and a minor one on large ones.
+  Countermeasures: template-plus-delta documents (standing sections
+  referenced from the capsule, never rewritten); risk-tiered,
+  diff-scoped audits with scripted zero-token pre-gates (tests, lint,
+  screenshots) before any model-token audit; batching of small
+  sequential features into a neighbouring phase (one amendment, one
+  brief, one audit gate). The full audit is never cut for high-risk
+  diffs: schema, auth, money, secrets.
+- **CC-11 — Honest efficiency claims.** A discipline document is
+  doctrine, not a measured result. The maintainers' paired sandbox
+  A/B test of their own efficiency-discipline skill did **not** meet
+  its pre-registered significance bar; the skill is retained as
+  internal doctrine, is not claimed as proven by measurement, and
+  any hard enforcement is expected to need a harness-level mechanism
+  rather than prose. Adopters SHOULD apply the same standard to
+  their own discipline documents: publish the measurement, including
+  when it is negative.
 
 ## Conformance
 

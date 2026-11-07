@@ -39,8 +39,13 @@ harness can pick up unchanged.
 adoption test: an adopted workspace scored 12/12 on the conformance
 check, and a fresh session answered 20/20 planted questions from disk
 alone after its context was discarded. Modules 2–4 are published as
-SPEC-lite documents; the full roadmap is in
-[docs/ROADMAP.md](docs/ROADMAP.md). A generic adapter guide —
+SPEC-lite documents; their requirement sets were extended on
+2026-11-07 with a first field-report intake from the maintainers'
+production fleet (structured dispatch and reporting protocols,
+convergence and constitution gates, context capsules, phase-overhead
+discipline, and an honestly negative efficiency measurement — see the
+intake note in [docs/ROADMAP.md](docs/ROADMAP.md)). The full roadmap
+is in [docs/ROADMAP.md](docs/ROADMAP.md). A generic adapter guide —
 written so an agent on any harness can map this repository onto its
 own harness — is published as
 [docs/ADAPTER-GUIDE.md](docs/ADAPTER-GUIDE.md), with nanobot as its

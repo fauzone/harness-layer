@@ -34,6 +34,26 @@ a fix whose test suite would not catch a regression.
 - **SC-5 — Evidence in the report.** A completion report MUST include
   the actual check commands run and their outcomes. "Tests pass"
   without the commands and outputs is a claim, not evidence.
+- **SC-6 — Verify live state before negative or blocking claims.**
+  Work MUST NOT be held, deferred, or reported as impossible on an
+  *assumed* state of the environment (a venue, a schedule window, a
+  service, a balance). The live state is checked first; only a check
+  result may hold work. Negative claims in general ("it is not
+  running", "it never arrived") require a second source before they
+  are asserted. *(Field report, maintainers' fleet, 2026-11: a work
+  package was held for an evening on the assumption that an access
+  window had closed; a thirty-second live check showed the venue up,
+  idle, and able to start the same night.)*
+- **SC-7 — Problem-definition gate.** A brief or analysis that names
+  only a label or a complaint is rejected at triage. A problem is:
+  an explicit goal or standard, the current reality, and a *verified*
+  obstacle between them — with an answer to "correct according to
+  what?". Consequence chains stop at the deepest lever that can
+  actually be acted on, not at metaphysical roots ("human
+  preference", "the nature of the system") that change no decision.
+  The full gate applies to high-impact decisions and large research
+  briefs; routine work takes the light form — three questions:
+  goal? proven obstacle? lever?
 
 ## Conformance
 

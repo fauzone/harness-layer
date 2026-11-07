@@ -41,10 +41,73 @@ unreviewed work, and lets agents make decisions that belong to humans.
   carries one subtask. A worker that fails the same problem twice with
   the same hypothesis MUST stop, commit its state, and report the
   failure verbatim (compare Module 2, SC-4).
+- **OR-8 — Structured dispatch briefs.** A dispatch brief MUST open
+  with locked field headers (sender, recipient, kind, task, plus the
+  fields the task class needs) and MUST contain an explicit
+  return-report instruction. Body prose is free; the header is not. A
+  brief without the header is not dispatchable. *(Field report,
+  maintainers' fleet, 2026-11: free-form briefs repeatedly lost the
+  report-back requirement entirely; locking the header made the loss
+  mechanically detectable.)*
+- **OR-9 — Controlled-vocabulary completion status, mechanically
+  enforced.** Every worker report MUST close with a status token from
+  a controlled vocabulary (e.g. DONE / BLOCKED / FAILED; audit
+  verdicts PASS / PASS WITH NOTES / FAIL). The dispatch wrapper's
+  completion gate SHOULD reject a "done" that carries no valid status
+  and record the violation. A status vocabulary that is only a
+  convention decays; enforced at the gate, it becomes a protocol.
+- **OR-10 — Structured completion reports.** Worker reports SHOULD
+  follow a fixed shape — deliverables, check results, measured cost
+  (Module 3, CC-1), remaining work — so the reviewer's synthesis is a
+  summary, not an excavation (extends Module 2, SC-5 to delegated
+  work).
+- **OR-11 — Traceability labels.** Every work item in a brief and
+  every deliverable in a report MUST carry its source label
+  (requirement id, plan section, or workstream id). Unlabelled
+  deliverables do not count toward completion or convergence
+  (OR-13); they are out of scope until the orchestrator says
+  otherwise.
+- **OR-12 — Constitution check at plan open.** Every plan, plan
+  amendment, or large brief MUST open with a short block naming the
+  standing rules that bind it (drawn from the project's context
+  capsule, Module 3 CC-9) and listing explicit deviations, if any. No
+  block, no dispatch. Standing sections are referenced, never
+  rewritten per phase.
+- **OR-13 — Convergence pass before closure.** A phase or milestone
+  MUST NOT be recorded complete until a convergence pass reconciles
+  the plan against what actually shipped: every drift is resolved in
+  writing in one direction or the other (fix the work, or amend the
+  plan), and the verdict (Converged / Not converged: <drift>) is
+  recorded in the state file. Progress percentages move only after
+  convergence, never before.
+- **OR-14 — Scope freeze for parallel work.** Briefs for parallel or
+  pipelined dispatches MUST declare frozen areas (files, schemas,
+  surfaces) that the dispatch may not touch. Only the orchestrator
+  installs or removes a freeze, and removals are recorded in the
+  state file. Work that edits a frozen area is invalid until the
+  orchestrator inspects it.
+- **OR-15 — Waiting requires a real trigger.** An orchestrator MUST
+  NOT report work as "waiting for X" (a free worker seat, an external
+  event, a state change) unless a mechanism that actually fires on X —
+  a watcher, hook, or scheduled check — is installed in the same
+  step. A blocked flag in a task list is not a trigger; passive
+  waiting is indistinguishable from forgetting. *(Field report,
+  maintainers' fleet, 2026-11: a build reported as "waiting for a
+  free seat" sat idle through two seat openings because nothing was
+  watching the seat ledger.)*
+- **OR-16 — Venue failure is branch-scoped.** Where a venue (a
+  machine, a host, an account) is reachable through independent
+  branches, failure of one branch MUST NOT be reported as the venue
+  being unavailable; the remaining branches are probed first.
+  Environment frames ("venue X is down", "window closed at T") expire
+  when the underlying facts change and MUST be re-derived, not
+  inherited, at each planning step (compare Module 2, SC-6).
 
 ## Conformance
 
 Percentage of delegated tasks with a recorded review before merge;
 percentage of sensitive actions executed without a human gate (target:
 zero); percentage of dead tasks detected by tracking rather than by a
-human asking.
+human asking; percentage of dispatches carrying the OR-8 header and a
+valid OR-9 closing status; percentage of phase closures with a
+recorded OR-13 convergence verdict.

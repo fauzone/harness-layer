@@ -67,6 +67,19 @@ recalibrated from the actuals of the first completed phase.*
   *SPEC-lite published:
   [MODULE-4-orchestration-patterns.md](MODULE-4-orchestration-patterns.md).*
 
+**Field-report intake #1 (2026-11-07).** Patterns proven in the
+maintainers' production fleet since the first publication were folded
+into the SPEC-lite requirement sets: Module 2 gained SC-6 (verify
+live state before negative or blocking claims) and SC-7
+(problem-definition gate); Module 3 gained CC-9 (context capsule),
+CC-10 (phase overhead discipline) and CC-11 (honest efficiency
+claims, including a negative A/B result); Module 4 gained OR-8
+through OR-16 (structured briefs, enforced completion status,
+structured reports, traceability labels, constitution check,
+convergence pass, scope freeze, waiting-requires-a-trigger, and
+branch-scoped venue failure). All remain SPEC-lite drafts; none of
+the new requirements has a conformance test yet.
+
 Adapter guides: a generic, agent-executable adaptation procedure
 ([ADAPTER-GUIDE.md](ADAPTER-GUIDE.md)) — an agent on any harness
 inventories its own harness, builds the layer mapping, instantiates
