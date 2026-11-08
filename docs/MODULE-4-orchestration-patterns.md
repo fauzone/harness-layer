@@ -189,6 +189,83 @@ unreviewed work, and lets agents make decisions that belong to humans.
   dispatch is a no-op, a project switch archives under the old
   label, and long-term memory files are not rotated.)*
 
+## Field procedure — efficiency through load distribution (orchestrator independence)
+
+*Best practice, maintainers' fleet, adopted 2026-11-08 after the
+failure analysis behind OR-21/OR-22. Objective: the orchestrator
+stops being the team's memory and single point of failure; load —
+rules, verification, vigilance — is distributed across the agents
+and the harness itself.*
+
+Context: in a brief-centric fleet, the orchestrator re-states
+standing rules in every dispatch (measured: 25–35% of brief volume),
+re-verifies every result by excavating logs, and is the only place
+most prohibitions exist. One omitted clause in one brief cost two
+delegated build attempts and ~2.0M worker tokens with zero output;
+the orchestrator's own standing files also grow without bound
+because every new rule lands there by default. The procedure below
+is the fleet's corrective, in execution order:
+
+1. **Inventory and classify every standing rule.** List every
+   prohibition, obligation, and convention the orchestrator
+   currently remembers or repeats, and assign each exactly one home:
+   (a) all-agent constitution, (b) per-agent/per-venue constitution,
+   (c) mechanical harness enforcement, (d) orchestrator judgment
+   (irreducible — state why in one line), (e) brief delta, or
+   (f) obsolete/duplicated. Rules nobody can assign are deleted or
+   escalated, never left floating in the orchestrator's memory.
+2. **Plant the constitution, lean.** Write classes (a) and (b) into
+   each agent's own standing workspace instructions as short rules
+   (one to two lines each) plus pointers to the canonical skill that
+   carries the full text. Never copy whole playbooks into standing
+   files: a constitution that bloats becomes a per-call token tax
+   and rots. Remove any default template instruction that
+   contradicts a planted rule at the same time — a prohibition that
+   fights the template loses.
+3. **Shrink briefs to delta.** After planting, a dispatch brief
+   carries only scope, deliverable, acceptance criteria, anchors,
+   and the constitution check (OR-12) referencing the planted layer.
+   "Not stated in the brief" is never again a valid reason for a
+   standing-rule violation.
+4. **Convert checkable rules into gates.** Anything a machine can
+   verify leaves prose entirely: preflight gates before dispatch
+   (environment, busy-seat, checksums, project marker), a
+   completion gate on the run ledger (a run whose log lacks a valid
+   controlled-vocabulary status is recorded `report=missing`), and a
+   zero-write detector (`files_changed` counted per run) that flags
+   the "exit 0, nothing produced" failure class mechanically
+   instead of relying on the orchestrator's harvest inspection.
+5. **Hygienic sessions.** Enforce OR-22 mechanically: one project
+   per session lineage, archive at project boundaries and at
+   workstream closure, restore context from the project capsule —
+   a few thousand tokens — instead of inherited cross-project
+   history (measured: >100k tokens per call when inherited).
+6. **Mutual aid as a planted duty.** Each agent's constitution
+   obliges it to surface, in its own report, concrete risks or
+   blockers it observes in another agent's chain — evidence, not
+   speculation — routed to the orchestrator for adjudication.
+   Helping to see is mandatory; taking over another agent's work
+   still requires a mandate. Vigilance becomes a fleet property,
+   not an orchestrator trait.
+7. **Keep operational numbers out of identities.** Targets,
+   thresholds, and prices live in configuration or briefs, never in
+   a constitution: planted numbers go silently stale when strategy
+   changes. Constitutions carry behaviour; configuration carries
+   values.
+8. **Version the whole layer.** Constitutions, the skill library,
+   and the harness tooling itself are committed to the team's
+   versioned repository in the same turn they change, so the fleet
+   can be re-instantiated on any host from the repository alone and
+   no rule survives only inside one machine's runtime state.
+
+Measured effect at adoption: brief volume per dispatch down by the
+standing-text fraction (25–35%); harvest verification reduced from
+6–8 log-excavation calls to 1–2 ledger reads per dispatch; the
+omitted-clause failure class closed by construction rather than by
+orchestrator care; orchestrator standing-file growth halted
+structurally (new rules have a home that is not the orchestrator),
+with actual shrinkage left to periodic relocation passes.
+
 ## Conformance
 
 Percentage of delegated tasks with a recorded review before merge;
