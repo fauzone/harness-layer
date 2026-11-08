@@ -202,6 +202,17 @@ and multi-agent production practice.*
     overhead ≈1.8–5× depending on task; the continuity benefit (20/20 vs
     0/20 cold-resume recall) is real. Full data: `docs/EVALUATION-AB.md`.
 
+## What a production harness provides
+
+The reference deployment behind this specification runs many agents from several projects on shared machines through a single dispatch runner. Its feature set, generalized in Module 4:
+
+- **Atomic resource claims** — shared seats/slots are claimed exclusively before any work starts, with defined takeover rules, so parallel projects never overwrite each other.
+- **Pre-dispatch context verification** — the target repository is verified and stamped into the run by the machine, so every agent starts in the correct context from the first second.
+- **Structured run-end verdicts** — every run closes with a machine-readable summary (token usage, report status, files changed, early-write marker, standing-rule violations), making cost and completeness auditable without reading logs.
+- **Type-aware gates** — report and write expectations follow the kind of run (build, read-only, no-report), so audits and probes are judged by their own nature.
+- **Enforced capacity classes** — heavy sessions are declared per dispatch and their concurrency is capped mechanically, keeping shared hardware responsive.
+- **An open gate-event stream** — every gate decision is published as a structured event that dashboards and registries consume, while enforcement stays independent of any observer being alive.
+
 ## Design principles
 
 1. **Files are the truth; summaries are not evidence.**
