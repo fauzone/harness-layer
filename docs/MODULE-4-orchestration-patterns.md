@@ -103,6 +103,52 @@ unreviewed work, and lets agents make decisions that belong to humans.
   when the underlying facts change and MUST be re-derived, not
   inherited, at each planning step (compare Module 2, SC-6).
 
+- **OR-17 — Completion-independent death detection.** Task tracking
+  MUST NOT depend on the worker's voluntary end record alone. A
+  session that has started and then produces neither an end record
+  nor a progress heartbeat within a stated threshold MUST be
+  surfaced automatically as a suspected silent death — carrying its
+  identifier and last-seen timestamp — and re-surfaced on a stated
+  interval until an end record or a fresh heartbeat clears it. A
+  heartbeat is any progress pulse the runner or its adapter emits;
+  where none exists, the start timestamp is the last-seen time.
+  *(Field report, maintainers' fleet, 2026-11: a dispatched build
+  died about ten minutes in with no error and no end record; the
+  end-keyed tracker never fired and the death was found only when a
+  human asked, more than two hours later.)*
+- **OR-18 — Open interchange contracts; control-plane separation.**
+  Cross-harness continuity SHOULD rest on published, file-based
+  contracts rather than one vendor's runtime: an append-only ledger
+  of start / heartbeat / end records carrying trace identifiers, a
+  Markdown state file per workstream, a next-brief file that must
+  exist before a chain can advance, and a launcher contract (any CLI
+  that takes a prompt file and a working directory and writes the
+  ledger). A shared monitor or registry — the control plane — MAY
+  detect and emit events but MUST NOT dispatch, merge, or kill
+  work; policy stays in the consuming harness. The monitor being
+  down MUST NOT stop the work, only its visibility: the state lives
+  in files the workers already write.
+- **OR-19 — Portable configuration.** Shared tooling MUST NOT embed
+  machine-absolute paths in code defaults. Locations are resolved
+  configuration-first: explicit option, then environment, then a
+  workspace-relative default — so identical code runs on any host
+  or harness, and a deployment states its locations as configuration
+  rather than as a code change. *(Field report, maintainers' fleet,
+  2026-11: removing a hard-coded home path from a production watcher
+  was completed by stating the deployment's ledger location as
+  environment configuration in its service definition; behaviour
+  verified identical after restart.)*
+- **OR-20 — Graded adapters; conformance as proof.** Portability
+  claims SHOULD be structured as graded adapter levels — level 0: a
+  generic shell wrapper that records start and end around any
+  command; level 1: a ledger adapter emitting contract records;
+  level 2: continuity handlers reacting to detection events;
+  level 3: a full harness pack (skills, handlers, configuration)
+  adopting the whole orchestration discipline — and proven by a
+  conformance suite that exercises the contracts themselves,
+  including the same chain run through two different harnesses,
+  rather than asserted in prose.
+
 ## Conformance
 
 Percentage of delegated tasks with a recorded review before merge;
@@ -110,4 +156,8 @@ percentage of sensitive actions executed without a human gate (target:
 zero); percentage of dead tasks detected by tracking rather than by a
 human asking; percentage of dispatches carrying the OR-8 header and a
 valid OR-9 closing status; percentage of phase closures with a
-recorded OR-13 convergence verdict.
+recorded OR-13 convergence verdict; percentage of silently dead
+sessions detected automatically within the stated OR-17 threshold,
+and median silent-death detection latency against the pre-adoption
+baseline; number of machine-absolute paths in shared tooling defaults
+(target: zero, OR-19).

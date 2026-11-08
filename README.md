@@ -44,7 +44,12 @@ SPEC-lite documents; their requirement sets were extended on
 production fleet (structured dispatch and reporting protocols,
 convergence and constitution gates, context capsules, phase-overhead
 discipline, and an honestly negative efficiency measurement — see the
-intake note in [docs/ROADMAP.md](docs/ROADMAP.md)). The full roadmap
+intake note in [docs/ROADMAP.md](docs/ROADMAP.md)), and again on
+2026-11-08 with a second intake covering task continuity and
+harness portability (silent-death detection on open ledger
+contracts, control-plane separation, portable configuration, graded
+adapters — see the intake notes in
+[docs/ROADMAP.md](docs/ROADMAP.md)). The full roadmap
 is in [docs/ROADMAP.md](docs/ROADMAP.md). A generic adapter guide —
 written so an agent on any harness can map this repository onto its
 own harness — is published as

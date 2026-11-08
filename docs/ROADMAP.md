@@ -80,6 +80,22 @@ convergence pass, scope freeze, waiting-requires-a-trigger, and
 branch-scoped venue failure). All remain SPEC-lite drafts; none of
 the new requirements has a conformance test yet.
 
+**Field-report intake #2 (2026-11-08).** A second intake, from a
+task-continuity and portability implementation in the maintainers'
+fleet (a production watcher upgraded after a dispatched build died
+silently and was discovered by a human more than two hours later):
+Module 4 gained OR-17 (completion-independent death detection, via
+start / heartbeat / end ledgers), OR-18 (open interchange contracts
+and control-plane separation — the shared monitor detects and emits,
+never dispatches, and its outage costs visibility only), OR-19
+(portable configuration — no machine-absolute paths in code
+defaults) and OR-20 (graded adapter levels 0–3, with portability
+proven by a conformance suite rather than asserted). Unlike intake
+#1, OR-17 and OR-19 arrived with a conformance suite already
+exercising them in the originating implementation (13 passing
+checks, including heartbeat extension, silent-death emission and
+re-emission, and configuration-first path resolution).
+
 Adapter guides: a generic, agent-executable adaptation procedure
 ([ADAPTER-GUIDE.md](ADAPTER-GUIDE.md)) — an agent on any harness
 inventories its own harness, builds the layer mapping, instantiates
