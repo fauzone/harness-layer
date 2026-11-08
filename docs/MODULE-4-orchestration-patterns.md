@@ -148,6 +148,46 @@ unreviewed work, and lets agents make decisions that belong to humans.
   conformance suite that exercises the contracts themselves,
   including the same chain run through two different harnesses,
   rather than asserted in prose.
+- **OR-21 — Standing rules live in the agent constitution, not in
+  briefs.** Prohibitions and obligations that bind every task (tool
+  bans per venue, write-first discipline, stop conditions, report
+  format, sensitive-action gates) MUST be planted in the agent's own
+  standing workspace instructions, versioned with the team. A brief
+  carries only the task delta plus a constitution check (OR-12)
+  referencing that layer. Any rule a machine can check MUST be
+  enforced mechanically (preflight gates, completion gates,
+  detectors), not restated as prose at any layer. The orchestrator's
+  duty shifts from remembering rules into briefs to keeping the
+  constitution planted and the gates live. *(Field report,
+  maintainers' fleet, 2026-11: two consecutive delegated build
+  attempts produced zero writes and burned ~2.0M tokens because a
+  venue tool prohibition lived only in the orchestrator's brief —
+  omitted once by the orchestrator, and on another occasion followed
+  into a loop — while the agent's own workspace template actively
+  instructed the prohibited tool. After the rule was planted in the
+  agent constitution and the template instruction removed, no brief
+  needs to carry it again.)*
+- **OR-22 — Sessions are per-project; seats are shared.** A seat (a
+  runtime slot on a host) MAY be reused across projects in turn; a
+  session's context MUST NOT cross a project boundary. At a project
+  switch on a workspace, the previous project's session files and
+  conversation history are archived under the old project's label
+  (recoverable, never deleted) and the new session starts from the
+  project's context capsule. Within one project, session affinity is
+  preserved: continuations return to the session that owns the work.
+  The dispatch layer SHOULD enforce this mechanically (a per-
+  workspace project marker; a mismatched dispatch archives before
+  it runs; a busy seat refuses the switch). Sessions of closed
+  workstreams are archived at closure, not left dormant-live.
+  *(Field report, maintainers' fleet, 2026-11: an inherited
+  cross-project session cost >100k tokens per call and lost
+  execution focus across two failed attempts; separately, a dormant
+  session from a closed project resumed its old work when woken by
+  an unrelated probe, spending ~83k tokens. The launcher-side
+  marker/archive mechanism was verified end-to-end on a synthetic
+  seat tree: first labelling archives unlabelled sessions, repeat
+  dispatch is a no-op, a project switch archives under the old
+  label, and long-term memory files are not rotated.)*
 
 ## Conformance
 
