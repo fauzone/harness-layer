@@ -49,7 +49,11 @@ intake note in [docs/ROADMAP.md](docs/ROADMAP.md)), and again on
 harness portability (silent-death detection on open ledger
 contracts, control-plane separation, portable configuration, graded
 adapters — see the intake notes in
-[docs/ROADMAP.md](docs/ROADMAP.md)). The full roadmap
+[docs/ROADMAP.md](docs/ROADMAP.md)). The production-harness feature
+list below was extended on 2026-11-12 with mechanisms that have since
+entered the maintainers' reference deployment (cross-project chain
+protection, deliverable skeletons, session hygiene, out-of-scope
+write detection, and a self-healing failure registry). The full roadmap
 is in [docs/ROADMAP.md](docs/ROADMAP.md). A generic adapter guide —
 written so an agent on any harness can map this repository onto its
 own harness — is published as
@@ -207,11 +211,16 @@ and multi-agent production practice.*
 The reference deployment behind this specification runs many agents from several projects on shared machines through a single dispatch runner. Its feature set, generalized in Module 4:
 
 - **Atomic resource claims** — shared seats/slots are claimed exclusively before any work starts, with defined takeover rules, so parallel projects never overwrite each other.
-- **Pre-dispatch context verification** — the target repository is verified and stamped into the run by the machine, so every agent starts in the correct context from the first second.
+- **Pre-dispatch context verification** — the target repository is verified and stamped into the run by the machine, so every agent starts in the correct context from the first second. A verified repository is remembered per project and seat, and re-verified on every following dispatch, so follow-up jobs need only a project label.
 - **Structured run-end verdicts** — every run closes with a machine-readable summary (token usage, report status, files changed, early-write marker, standing-rule violations), making cost and completeness auditable without reading logs.
 - **Type-aware gates** — report and write expectations follow the kind of run (build, read-only, no-report), so audits and probes are judged by their own nature.
 - **Enforced capacity classes** — heavy sessions are declared per dispatch and their concurrency is capped mechanically, keeping shared hardware responsive.
 - **An open gate-event stream** — every gate decision is published as a structured event that dashboards and registries consume, while enforcement stays independent of any observer being alive.
+- **Cross-project chain protection** — when a shared seat is carrying one project's active build chain, a dispatch from another project is refused by the machine before anything starts. Side work can never silently seize the worker a chain depends on.
+- **Deliverable skeletons, gated** — for a run with a named deliverable, the runner creates its skeleton in the project folder before the worker starts; if the skeleton is still unfilled at run end, the run's gate fails it. A job that ends without its report is a mechanical fact, not a discovery made hours later.
+- **Session hygiene and rotation** — a seat's stored session context belongs to one project. Before a dispatch for a different project, the runner archives the foreign context and starts the seat fresh, publishing a rotation event; stale context from an earlier job can no longer bleed into the next one.
+- **Out-of-scope write detection** — the runner snapshots the run's scope (its repository, workspace, and seat root) before dispatch and re-walks it at run end. New or changed files outside the run's repository and workspace are counted on the run's verdict line — legitimate work, the runner's own per-run artifacts, and session files excluded — and published as an event when the count is non-zero.
+- **Self-healing failure registry** — run failures are classified mechanically against a registry of known failure families, each carrying its recorded root cause and a bounded remedy, with an evidence pack assembled per occurrence. A remedy earns autonomy through a mechanical confidence score (verified root cause, proven remedy, reversibility); anything destructive or low-confidence escalates to a human instead. The registry ships in dry-run mode: it classifies and records intended actions without executing them.
 
 ## Design principles
 
